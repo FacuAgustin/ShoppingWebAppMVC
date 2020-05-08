@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ShoppingWebAppMVC.ViewModel.ShoppingCartViewModel> 
+@{
+    ViewBag.Title = "ShoppingCart";
+    decimal TotalCount = 0.00M;
+}
+<div style="text-align:center">
+    <h2>ShoppingCart</h2>
+</div>
+@using (Html.BeginForm("SaveOrder","Shopping",FormMethod.Post))
+{
+
+<table class="table tab-content">
+    @foreach (var item in Model)
+    {
+        //sumo los productos
+        TotalCount += item.Total;
+        <tr>
+            <td>
+                <img src="@Url.Content(item.ImagenPath)" width="60px" height="60px" />
+            </td>
+            <td style="text-align:center">@item.ItemName</td>
+            <td style="text-align:right">@item.UnitPrice</td>
+            <td style="text-align:right">@item.Total</td>
+        </tr>
+
+    }
+    <tr style="border-top:2px solid #0094ff ">
+        <td colspan="5" style="text-align:right">
+            <h3>Total Count</h3>
+            <h4>@TotalCount.ToString()</h4>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="5">
+            <input type="submit" name="Save" value="Save" id="AddOrder" class="btn btn-block btn-primary" style="float:right" />
+        </td>
+    </tr>
+</table>
+}

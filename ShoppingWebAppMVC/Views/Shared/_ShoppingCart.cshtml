@@ -1,0 +1,13 @@
+﻿@*vista parcial creada para mostrar en el navbar la cantidad de productos en la cart*@
+<ul class="nav navbar-nav navbar-right">
+    <li>
+        @if (Session["CartCount"] == null)
+        {
+            @Html.ActionLink("Cart", "ShoppingCart", "Shopping", new { id = "ItemCart" })
+        }
+        else
+        {
+            @Html.ActionLink("Cart   "+Session["CartCount"], "ShoppingCart", "Shopping", new { id = "ItemCart" })
+        }
+    </li>
+</ul>

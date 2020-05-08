@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ShoppingWebAppMVC.ViewModel.ShoppingViewModel>
+
+    <script src="~/Scripts/FunctionsA2.js"></script>
+<div class="container" >
+    <h2 class="text-center">Product List</h2>
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4" style="border:2px solid black;border-radius:4px;margin-top:2px">
+            <div style="text-align:center;border-bottom:2px solid #0094ff">
+                <h3>@item.ItemName</h3>
+            </div>
+            <div>
+                <div class="col-md-8">
+                    <img src="@Url.Content(item.ImagenPath)" width="150" height="150" />
+                </div>
+                <div class="col-md-4" style="text-align:left">
+                    <b>@item.Description</b>
+                </div>
+            </div>
+            <div class="col-md-8" style="font-size: 18px;border-top: 2px solid #0094ff;padding: 2px">
+                <b>@item.ItemPrice.ToString("#.00 us$")</b>
+            </div>
+            <div class="col-md-4" style="text-align:right;margin-bottom:10px;border-top:2px solid #0094ff;padding:2px">
+                @*itemid hace referencia al ItemID de ShoppingViewModel*@
+                <input type="button" name="AddToCart" value="Add To Cart" class="btn btn-success" itemid="@item.ItemID" id="btnAddToCart" onclick="AddToCart(this)" />
+            </div>
+        </div>
+    }
+</div>
